@@ -15,27 +15,44 @@ int main(int argc, char **argv)
   ros::Duration(2).sleep();
   std_msgs::Int32 msg;
 
-  int n = 0;
+  int pwmr = 0;
+  int pwml = 0;
+  int mode = 0;
+
   while(ros::ok())
   {
-    int i;
-    if(n == 1)
-      cout << "input a num:(r)";
-    if(n == 2)
-      cout << "input a num:(l)";
-    if(n == 0)
-      cout << "input a num:(MODE)";
-    n++;
-    cin >> i;
-    msg.data = i;
-    if(n ==3)
-      n = 0;
-    if(i == 256)
+    cout << "User's right is ";
+    cin >> pwmr;
+    cout << "User's left is ";
+    cin >> pwml;
+
+    if(pwmr == 0 && pwml == 0)
+      mode = 0;
+    else if(pwmr > 0 && pwml > 0 && pwmr < 256 && pwml < 256)
+      mode = 1;
+    else if(pwmr < 0 && pwml < 0 && pwmr > -256 && pwml > -256)
+    {
+      mode = 2;
+      pwml = -1 * pwml;
+      pwmr = -1 * pwmr;
+    }
+    else
       break;
 
+    msg.data = mode;
     number_publisher.publish(msg);
-    cout << "PUB";
     ros::spinOnce();
+    cout << "PUB\n";
+    loop_rate.sleep();
+    msg.data = pwml;
+    number_publisher.publish(msg);
+    ros::spinOnce();
+    cout << "PUB\n";
+    loop_rate.sleep();
+    msg.data = pwmr;
+    number_publisher.publish(msg);
+    ros::spinOnce();
+    cout << "PUB\n";
     loop_rate.sleep();
   }
 }
