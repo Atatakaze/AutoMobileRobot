@@ -42,17 +42,14 @@ int main(int argc, char **argv)
     msg.data = mode;
     number_publisher.publish(msg);
     ros::spinOnce();
-    cout << "PUB\n";
     loop_rate.sleep();
     msg.data = pwml;
     number_publisher.publish(msg);
     ros::spinOnce();
-    cout << "PUB\n";
     loop_rate.sleep();
     msg.data = pwmr;
     number_publisher.publish(msg);
     ros::spinOnce();
-    cout << "PUB\n";
     loop_rate.sleep();
   }
 }
