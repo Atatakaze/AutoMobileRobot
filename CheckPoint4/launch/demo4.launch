@@ -1,0 +1,4 @@
+<launch>
+  <node name="arduino_serial_node" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM0"/>
+  <node name="rpi_node" pkg="demo4_pkg" type="demo4.py" output="screen"/>
+</launch>
