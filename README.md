@@ -99,3 +99,7 @@ CheckPoint folders are the src, scripts, launch and CMakeLists of the ros packag
 ## **Authors**
 
 - **bobo** - *Initial work* -
+
+## **License** ##
+
+This project is licensed under MIT License - see the [LICENSE.md](https://github.com/Atatakaze/AutoMobileRobot/blob/main/LICENSE) file for details.
